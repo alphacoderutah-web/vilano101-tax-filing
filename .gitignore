@@ -1,0 +1,42 @@
+# ---------------------------------------------------------------------------
+# THIS IS A PUBLIC REPOSITORY. Everything committed here is world-readable
+# and permanently recoverable from git history even after deletion.
+# ---------------------------------------------------------------------------
+
+# Credentials - never commit
+.env
+.env.*
+credentials.md
+credentials.local.md
+*.pem
+*.p12
+*.pfx
+*.jks
+*.kdbx
+id_rsa
+id_ed25519
+
+# Account recovery material bypasses two-factor authentication. A commit puts
+# it in history permanently, where deleting the file does not remove it.
+*backup*codes*
+*recovery*codes*
+
+# GUEST DATA - never commit. OwnerRez booking exports carry guest email
+# addresses, guest ids, reservation numbers and free-text notes. That is your
+# guests' personal data, not the business's, and it must not be published.
+*ownerrez-bookings*
+*bookings*.json
+snapshots/
+exports/
+*.csv
+
+# Filing evidence - contains submitted figures, confirmation numbers and
+# payment references. Keep locally, do not publish.
+confirmations/
+receipts/
+filed/
+
+# Python
+__pycache__/
+*.pyc
+.venv/

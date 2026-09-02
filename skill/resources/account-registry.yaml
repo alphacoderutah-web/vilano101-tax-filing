@@ -1,0 +1,291 @@
+version: 3.0-vilano101
+last_updated: 2026-09-01
+client: VILANO101
+security_note: >-
+  Tax account/certificate numbers only. Login credentials, FEINs, PINs, bank routing/account
+  numbers, and payment secrets are intentionally excluded and must never be added.
+
+# ---------------------------------------------------------------------------
+# SCOPE CONFIRMED BY OPERATOR 2026-09-01:
+#   - Client is VILANO101 (ten St. Augustine homes, St. Johns County FL only)
+#   - VILANO101, LLC is the single filer of record for all properties
+#   - Filing period in progress: AUGUST 2026 (monthly)
+#   - Operator confirms both government accounts already exist
+#
+# This registry REPLACED the shipped public template (v2.0-template), which is
+# preserved at account-registry.yaml.template-backup.
+#
+# confidence values:
+#   VERIFIED_DOCUMENT          - read off a government registration/notice document
+#   VERIFIED_LIVE_PORTAL       - read off the authenticated portal account screen
+#   HISTORICAL_PORTAL_OBSERVED - from a prior filing cycle; MUST be re-verified live
+#   PENDING_USER_ENTRY         - operator holds the value; not yet recorded here
+# ---------------------------------------------------------------------------
+
+# ===========================================================================
+# DO NOT USE THESE NUMBERS - WRONG CLIENT
+# ---------------------------------------------------------------------------
+# The file vacation-rental-licensing/references/st-johns-county.md contains six
+# real-looking government identifiers:
+#   FL DOR 65-8019626459-9 / 65-8019387296-0 / 65-8018914248-6
+#   St. Johns TDT 980779 / 980595 / 980788
+# They belong to the ARCHIVED Discovery Management LLC portfolio (206 14th St,
+# 505 20th St, 604 21st St; entities 604 Vilano LLC and Draper Hills Dr LLC).
+# That reference file predates the 2026-08-17 client repoint by 44 minutes and
+# was never updated. The licensing audit log states: "Do not merge them."
+# NONE of those addresses is a Vilano101 property. Never carry them forward.
+# ===========================================================================
+
+entity:
+  legal_name: "VILANO101, LLC"
+  sunbiz_document_number: "L21000525709"
+  status: ACTIVE
+  filed_date: "2021-12-14"
+  manager_registered_agent: "HAMILTON, ADAM"
+  principal_address: "101 Meadow Ave, St. Augustine, FL 32084"
+  role: "Filer of record for all ten properties (operator-confirmed 2026-09-01)"
+  evidence: "Florida Division of Corporations (Sunbiz) public record"
+  confidence: VERIFIED_DOCUMENT
+
+florida_dor:
+  - key: FL-DOR-VILANO101
+    entity: "VILANO101, LLC"
+    certificate_number: "PENDING_USER_ENTRY"     # format: NN-NNNNNNNNNN-N
+    confidence: PENDING_USER_ENTRY
+    needs_live_verification: true
+    filing_frequency: "VERIFY_IN_PORTAL - assumed monthly; DOR assigns by volume"
+    return_form: "DR-15 Sales and Use Tax Return"
+    portal: "https://floridarevenue.com"
+    covers: ALL_TEN_PROPERTIES
+    notes:
+      - "Operator confirmed 2026-09-01 that this certificate exists and the number is held."
+      - "Enter as VERIFIED_DOCUMENT once read off the DR-11 certificate, or"
+      - "VERIFIED_LIVE_PORTAL once read off the authenticated account screen."
+      - "Consolidated vs per-location registration NOT yet established - see open_questions."
+
+florida_county_tdt:
+  - key: FL-STJOHNS-VILANO101
+    jurisdiction: "St. Johns County"
+    entity: "VILANO101, LLC"
+    account_number: "PENDING_USER_ENTRY"
+    confidence: PENDING_USER_ENTRY
+    needs_live_verification: true
+    filing_frequency: "Monthly (county rule - monthly for all filers)"
+    administered_by: "St. Johns County Tax Collector - NOT the Department of Revenue"
+    portal: "https://www.stjohnstax.us"
+    contact: "(904) 209-2250"
+    covers: ALL_TEN_PROPERTIES
+    open_issue: >-
+      County TDT account numbers are the LOWEST-confidence tier in this registry.
+      The learning log records a real cycle in which all three county TDT numbers held
+      in a registry were wrong (7-digit live vs 6-digit held, no consistent transform).
+      Re-read off the live portal before entering any figures.
+
+# ---------------------------------------------------------------------------
+# VERIFIED RATES - AUGUST 2026 PERIOD
+# Confirmed from official sources 2026-08-31 / 2026-09-01.
+# Re-verify every period against the period being filed, not against today.
+# ---------------------------------------------------------------------------
+rates:
+  period_verified_for: "2026-08"
+  florida_state_sales_tax:
+    rate: 0.060
+    applies_to: "Transient rental accommodations, periods of six months or less (s. 212.03)"
+    source: "https://floridarevenue.com/Forms_library/current/brochure/gt800034.pdf"
+    note: "The 2025 business-rent-tax repeal affected s. 212.031 commercial rentals, NOT transient rentals."
+    confidence: VERIFIED_DOCUMENT
+  st_johns_discretionary_sales_surtax:
+    rate: 0.005
+    effective: "2016-01-01"
+    expires: "2035-12-31"
+    description: "School capital outlay surtax"
+    source: "https://floridarevenue.com/Forms_library/current/dr15dss_26.pdf"
+    edition_trap: >-
+      The "current" URL dr15dss.pdf serves the CALENDAR YEAR 2025 edition (R. 11/24).
+      The true 2026 edition is dr15dss_26.pdf (R. 11/25). Both list St. Johns at .5%,
+      so the rate is unchanged - but always confirm the printed calendar year.
+    cap_note: "The $5,000 surtax cap does NOT apply to transient accommodations (GT-800019). Surtax is due on the full rental charge."
+    confidence: VERIFIED_DOCUMENT
+  dr15_combined_state_rate: 0.065
+  st_johns_tourist_development_tax:
+    rate: 0.050
+    effective: "2021-10-01"
+    authority: "Ordinance 86-72 as amended; fifth cent by Ordinance 2021-43"
+    remitted_to: "St. Johns County Tax Collector"
+    source: "https://sjctax.us/tourist-development-tax/"
+    corroboration: "DR-15TDT R. 03/25 prints 'St. Johns 5.0% County' - county and state concur"
+    confidence: VERIFIED_DOCUMENT
+  combined_guest_facing_rate: 0.115
+
+# ---------------------------------------------------------------------------
+# DEADLINES - AUGUST 2026 PERIOD
+# ---------------------------------------------------------------------------
+deadlines:
+  period: "2026-08"
+  due_date: "2026-09-01"
+  dr15:
+    statutory_delinquency_after: "2026-09-21"
+    note: "20 Sept 2026 is a SUNDAY; F.S. 212.11(1) shifts to the next business day (Mon 21st)."
+    electronic_payment_initiation_deadline: "2026-09-18T17:00:00-04:00"
+    electronic_payment_note: >-
+      DR-659 R. 01/26, Sales and Use, September column = 18. Electronic payment deadlines
+      move BACKWARD to the previous business day while return deadlines move FORWARD.
+      TREAT 18 SEPTEMBER AS THE OPERATIVE DEADLINE.
+    source: "https://floridarevenue.com/forms_library/current/dr659.pdf"
+  st_johns_tdt:
+    statutory_delinquency_after: "2026-09-21"
+    note: "County applies the same weekend/holiday next-business-day rule."
+    electronic_cutoff: "NOT PUBLISHED - no county analogue of DR-659 found. Confirm with (904) 209-2250."
+  collection_allowances:
+    dr15: "Let the portal compute. Conditional on timely electronic filing AND payment."
+    st_johns_tdt: "2.5% of the first $1,200.00 of tax due, maximum $30.00, timely filings only."
+  penalties_if_late:
+    dr15: "10% of tax owed, minimum $50, plus floating-rate interest"
+    st_johns_tdt: "10% per 30 days or fraction, maximum 50%, minimum $50, plus interest"
+
+# ---------------------------------------------------------------------------
+# PROPERTIES IN SCOPE - ten homes, all St. Augustine FL 32084, St. Johns County
+# Source: vacation-rental-licensing/data/licensing-registry.yaml (live registry)
+# Corroborated: D:\Vilano 101\FreeWyld\freewyld\RUNBOOK.md (verified 2026-08-26)
+# ---------------------------------------------------------------------------
+properties:
+  - address: "101 Meadow Ave"
+    listing: "The Palms"
+    ownerrez_id: 341810
+    status: active
+    owner_of_record: "Hamilton"
+  - address: "109 Meadow Ave"
+    listing: "Pink Flamingo"
+    ownerrez_id: 341809
+    status: active
+    owner_of_record: UNKNOWN
+  - address: "205 Fifth St"
+    listing: "Sunny"
+    ownerrez_id: 423529
+    status: active
+    owner_of_record: "205 Fifth St LLC"
+  - address: "209 Eleventh St"
+    listing: "Coco"
+    ownerrez_id: 347827
+    status: active
+    owner_of_record: UNKNOWN
+  - address: "211 Eleventh St"
+    listing: "SeaBreeze"
+    ownerrez_id: 347825
+    status: active
+    owner_of_record: UNKNOWN
+    listing_name_confidence: INFERRED
+    inference_basis: >-
+      Registry records no listing name for 211 Eleventh St. SeaBreeze assigned because
+      Family Tides = Coco + SeaBreeze and Coco is 209 Eleventh, making 211 the adjacent
+      home. CONFIRM before relying on it for a return.
+  - address: "217 Eleventh St"
+    listing: "Pearl"
+    ownerrez_id: 491267
+    status: active
+    owner_of_record: "Hamilton"
+  - address: "505A Twentieth St"
+    listing: "Olive"
+    ownerrez_id: 475153
+    status: active
+    owner_of_record: "507 Twentieth St"
+  - address: "507 Twentieth St"
+    listing: "Vilano Bliss"
+    ownerrez_id: 374186
+    status: active
+    owner_of_record: "507 Twentieth St"
+  - address: "605 Twentieth St"
+    listing: "Ruby / 605 Vilano Beach Paradise"
+    ownerrez_id: 493005
+    status: HUMAN_CONFIRMATION_REQUIRED
+    owner_of_record: "Brendon Horn (deed-verified, parcel 1462300050, WD Bk/Pg 5543/1184)"
+    flag: >-
+      MAY NOT BELONG ON A VILANO101 RETURN. DBPR licence DWE6502363 is held by
+      VILANO PROPERTIES LLC (Sunbiz L17000009721) - a DIFFERENT entity from
+      VILANO101, LLC (L21000525709), different managers, unrelated on public record.
+      Already has its own county footprint: Business Tax Receipt 1094031 and its own
+      STR registration. Also the only listing PriceLabs is not pushing
+      (push_enabled false, last_date_pushed null as of 2026-08-26) and one of only two
+      with no Airbnb or Vrbo id. RESOLVE BEFORE INCLUDING ITS REVENUE.
+  - address: "3877 Laurel St"
+    listing: "True Blue"
+    ownerrez_id: 341811
+    status: inactive
+    owner_of_record: UNKNOWN
+    flag: >-
+      Recorded active_status inactive in the licensing registry. No Airbnb and no Vrbo id.
+      Operator instruction 2026-09-01 was to work only the LIVE houses. BUT current listing
+      status does not by itself determine August 2026 tax scope - see tax_scope_rule below.
+
+# ---------------------------------------------------------------------------
+# COMBO LISTINGS - one listing covering two physical homes
+# Confirmed 2026-08-26 from PriceLabs listing notes and bedroom arithmetic.
+# markets.json is authoritative; master_property_map.md incorrectly treats these
+# as channel-splits and reports 11 physical units. The correct count is 10 homes.
+# ---------------------------------------------------------------------------
+combo_listings:
+  - listing: "Family Tides"
+    ownerrez_id: 347828
+    bedrooms: 6
+    components: ["Coco (209 Eleventh, 2BR)", "SeaBreeze (211 Eleventh, 4BR)"]
+  - listing: "Pink Palms Retreat"
+    ownerrez_id: 475391
+    bedrooms: 8
+    components: ["Pink Flamingo (109 Meadow, 4BR)", "The Palms (101 Meadow, 4BR)"]
+  - listing: "Coastal Duo: Bliss & Olive"
+    ownerrez_id: 475320
+    bedrooms: 7
+    components: ["Olive (505A Twentieth, 2BR)", "Vilano Bliss (507 Twentieth, 5BR)"]
+combo_tax_warning: >-
+  A booking on a combo listing is revenue for TWO homes. Counting a combo listing AND its
+  components as separate properties double-counts the taxable base. Counting only the
+  components misses combo bookings entirely. 10 single-home listings + 3 combo listings
+  = 13 OwnerRez records covering 10 physical homes.
+
+tax_scope_rule: >-
+  CURRENT LISTING STATUS DOES NOT DETERMINE AUGUST 2026 TAX SCOPE. What matters is whether a
+  property took taxable revenue DURING the period being filed. A house snoozed on 1 September
+  may still have had August stays; a house live today may have had none. Resolve inclusion
+  from the August booking data, not from live/snoozed status. Local snapshots are dated
+  2026-08-26 and are stale for this purpose.
+
+platform_scope:
+  pms: "ONE OwnerRez account (13 listings covering 10 distinct homes)"
+  pricing: "ONE PriceLabs account"
+  source: "D:\\Vilano 101\\FreeWyld\\freewyld\\RUNBOOK.md, last verified 2026-08-26"
+  correction_note: >-
+    SKILL.md still declares a filing universe of 2 OwnerRez + 2 Airbnb + 2 Vrbo across
+    FL DOR, Flagler County TDT, St. Johns County TDT and Utah TAP. That describes the
+    ARCHIVED Discovery Management portfolio, not Vilano101. For this client the universe
+    is: ONE OwnerRez, St. Johns County only, two returns (DR-15 + county TDT).
+    Flagler and Utah are OUT OF SCOPE.
+
+open_questions:
+  - id: OQ-1
+    question: "Is the FL DOR registration consolidated (one certificate, all ten) or one per rental location?"
+    why_it_matters: "Determines whether tomorrow is 1 DR-15 or up to 10."
+    evidence: "The archived portfolio's pattern was one certificate per property. Unresolved for Vilano101."
+    status: BLOCKING
+  - id: OQ-2
+    question: "Is the St. Johns TDT account consolidated or one per rental address?"
+    why_it_matters: "The county TDT application form is one-rental-address-per-form, implying per-location accounts."
+    status: BLOCKING
+  - id: OQ-3
+    question: "Marketplace remittance posture per channel per tax type for August 2026."
+    why_it_matters: >-
+      Airbnb/Vrbo generally remit FL state sales tax but NOT St. Johns County TDT.
+      Never assume; establish from evidence per platform, per tax type, per period.
+      11 of 13 listings carry Airbnb and Vrbo ids; Ruby (605 Twentieth) and
+      True Blue (3877 Laurel) carry neither.
+    status: BLOCKING
+  - id: OQ-4
+    question: "Listing-to-home mapping for the revenue base."
+    why_it_matters: >-
+      13 listings, 10 homes, three combo listings (Family Tides = Coco + SeaBreeze;
+      Pink Palms Retreat = Pink Flamingo + The Palms; Coastal Duo = Olive + Vilano Bliss).
+      markets.json and master_property_map.md disagree on the grouping. Getting this wrong
+      double-counts or shorts the taxable base.
+    status: BLOCKING
+  - id: OQ-5
+    question: "605 Twentieth St entity mismatch - see property flag."
+    status: HUMAN_CONFIRMATION_REQUIRED
