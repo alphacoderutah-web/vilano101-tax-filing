@@ -182,7 +182,31 @@ well-behaved portal rolls back cleanly — confirm it, don't assume it.
 Prefer **ACH** over card. Convenience fees vary by method and card can cost substantially more
 for identical settlement. Card and e-check payments are often non-cancellable once made.
 
-## Step 11 — Close the period
+## Step 11 — Generate the Stessa entry report and key it in by hand
+
+Stessa is **not connected to anything**. A person enters the month's figures manually from a
+report this repo generates. That gating is deliberate — keep it.
+
+```bash
+python scripts/stessa_report.py 2026-08
+```
+
+This reads the latest OwnerRez snapshot from step 3 and writes
+`worksheets/stessa/<period>-stessa-entry.md`.
+
+The report is built on the owner's accounting decisions — **gross** revenue, **accrual**
+(arrival-month) timing, tax collected as income and tax remitted as expense — and the
+combo listings are already split to their physical homes by bedroom ratio.
+
+For each home in section 1, enter every line as shown. Section 2 ties the totals back to the
+two tax returns. Section 4 lists cancelled bookings with retained money — **decide each one**
+before entering it. Section 5 is the booking-level audit trail; keep it with the period's
+records.
+
+If the filed tax figures differ from the accrued figures in the report, the **filed figure
+wins** — note the difference and regenerate.
+
+## Step 12 — Close the period
 
 1. Save the filing confirmation and the payment receipt.
 2. Record the confirmation number and whether payment is **scheduled** or **cleared**.
