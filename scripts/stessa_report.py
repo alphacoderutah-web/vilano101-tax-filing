@@ -145,9 +145,25 @@ def main():
     acct = next(iter(data))
     bookings = data[acct]["bookings"]
 
+    # Human decisions for this period (forfeiture calls on cancelled bookings).
+    dec_path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+                            "decisions.json")
+    decisions = {}
+    if os.path.exists(dec_path):
+        decisions = json.load(open(dec_path, encoding="utf-8")).get(period, {})
+    forfeit_ids = set(decisions.get("forfeitures", []))
+
     sel = [b for b in bookings if real_booking(b) and str(b.get("arrival") or "")[:7] == period]
-    active = [b for b in sel if b.get("status") == "active"]
     canceled = [b for b in sel if b.get("status") == "canceled"]
+
+    # A confirmed forfeiture is income and is taxable, so it joins the active set.
+    # OwnerRez reduces a cancelled booking's charge lines to the retained amount, so
+    # the charges are used as-is. Anything not decided stays out.
+    forfeited = [b for b in canceled if b.get("id") in forfeit_ids]
+    undecided = [b for b in canceled
+                 if b.get("id") not in forfeit_ids
+                 and (b.get("total_paid") or 0.0) - (b.get("total_refunded") or 0.0) > 0.005]
+    active = [b for b in sel if b.get("status") == "active"] + forfeited
 
     # -------- per listing --------
     by = defaultdict(blank_row)
@@ -321,27 +337,51 @@ def main():
     w("")
 
     # ---- Section 4: canceled with retained charges ----
-    w("## 4. Cancelled bookings with retained charges — NOT included above")
+    w("## 4. Cancelled bookings with retained charges")
     w("")
-    retained = []
-    for b in canceled:
-        paid = b.get("total_paid") or 0.0
-        ref = b.get("total_refunded") or 0.0
-        if paid - ref > 0.005:
-            retained.append((b, paid - ref))
-    if not retained:
-        w("None this period.")
-    else:
-        w("A retained, unrefunded charge on a cancelled booking is generally taxable income "
-          "where the guest had a guaranteed right to occupy. **Decide each one**, then enter "
-          "any that are forfeitures as income under the property.")
+    if forfeited:
+        note = decisions.get("note", "")
+        who = decisions.get("decided_by", "owner")
+        when = decisions.get("decided_on", "")
+        w(f"**Confirmed as forfeitures by {who}{' on ' + when if when else ''} — these ARE "
+          f"included as income in sections 1 and 2 above**, under the property shown. A "
+          f"forfeited charge is taxable: the guest held a guaranteed right to occupy.")
+        w("")
+        w("| Booking | Property | Channel | Retained | Taxable base | Tax |")
+        w("|---|---|---|---:|---:|---:|")
+        ftb = ftx = fret = 0.0
+        for b in sorted(forfeited, key=lambda x: -((x.get("total_paid") or 0) - (x.get("total_refunded") or 0))):
+            inc, base, taxes = split_charges(b)
+            ret = (b.get("total_paid") or 0.0) - (b.get("total_refunded") or 0.0)
+            tx = sum(taxes.values())
+            w(f"| {b.get('id')} | {(b.get('property') or {}).get('name','?')} | "
+              f"{b.get('listing_site') or 'direct'} | {money(ret)} | {money(base)} | {money(tx)} |")
+            ftb += base; ftx += tx; fret += ret
+        w(f"| **Total** | | | **{money(fret)}** | **{money(ftb)}** | **{money(ftx)}** |")
+        w("")
+        if note:
+            w(f"> {note}")
+            w("")
+        w(f"**Tax check:** these add {money(ftb)} of taxable base to the period. If the filed "
+          f"returns did not include them, the period was under-reported by roughly "
+          f"{money(ftb * state_rate)} on the DR-15 and {money(ftb * tdt_rate)} on the county "
+          f"TDT. Confirm against the filed returns; correct by amendment or on the next "
+          f"return as your CPA advises.")
+        w("")
+    if undecided:
+        w("**Undecided — NOT included as income.** Decide each, then add the booking id to "
+          "`decisions.json` under this period and regenerate.")
         w("")
         w("| Booking | Property | Channel | Retained | Decision |")
         w("|---|---|---|---:|---|")
-        for b, ret in retained:
+        for b in undecided:
+            ret = (b.get("total_paid") or 0.0) - (b.get("total_refunded") or 0.0)
             w(f"| {b.get('id')} | {(b.get('property') or {}).get('name','?')} | "
               f"{b.get('listing_site') or 'direct'} | {money(ret)} | ☐ forfeiture · ☐ released |")
-    w("")
+        w("")
+    if not forfeited and not undecided:
+        w("No cancelled bookings retained money this period.")
+        w("")
 
     # ---- Section 5: booking-level appendix ----
     w("## 5. Booking-level detail (audit trail)")

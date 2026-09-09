@@ -1,0 +1,10 @@
+{
+  "_comment": "Per-period human decisions that the Stessa report cannot make on its own. A cancelled booking with retained, unrefunded money is taxable income where the guest had a guaranteed right to occupy (a forfeiture), and is NOT income where the money was a released deposit. Record the owner's decision here by booking id; scripts/stessa_report.py reads it. Anything not listed is treated as NOT a forfeiture and stays out of income.",
+
+  "2026-08": {
+    "forfeitures": [17213461, 17492584, 17393281],
+    "decided_by": "owner",
+    "decided_on": "2026-09-09",
+    "note": "All three retained amounts on August-arrival cancellations confirmed as forfeitures. OwnerRez had already reduced each booking's charge lines to the retained amount, so the charges are used as-is."
+  }
+}

@@ -69,21 +69,22 @@ Stays: 5
 
 ### Pink Flamingo — 109 Meadow Ave
 
-Stays: 5 · plus a share of 1 combo stay(s)
+Stays: 7 · plus a share of 1 combo stay(s)
 
 | Line | Amount | Type |
 |---|---:|---|
-| Rental income (incl. channel fee recovery) | $9,218.00 | income |
-| Cleaning fees | $1,950.00 | income |
+| Rental income (incl. channel fee recovery) | $10,577.23 | income |
+| Cleaning fees | $2,109.00 | income |
+| Pet fees | $3.00 | income |
 | Administrative fees | $167.05 | income |
-| Credit card processing recovered | $165.66 | income |
-| Taxes collected from guests | $928.00 | income |
-| **Total income** | **$12,428.72** | |
-| Platform host fees (Airbnb / Vrbo) | -$1,088.09 | expense |
-| FL sales tax + surtax remitted — accrued | -$380.56 | expense |
-| St. Johns County TDT remitted — accrued | -$575.04 | expense |
-| **Total expenses** | **-$2,043.68** | |
-| **Net** | **$10,385.03** | |
+| Credit card processing recovered | $211.20 | income |
+| Taxes collected from guests | $1,108.18 | income |
+| **Total income** | **$14,175.66** | |
+| Platform host fees (Airbnb / Vrbo) | -$1,178.25 | expense |
+| FL sales tax + surtax remitted — accrued | -$482.40 | expense |
+| St. Johns County TDT remitted — accrued | -$653.37 | expense |
+| **Total expenses** | **-$2,314.02** | |
+| **Net** | **$11,861.64** | |
 
 ### SeaBreeze — 211 Eleventh St
 
@@ -123,21 +124,21 @@ Stays: 4
 
 ### The Palms — 101 Meadow Ave
 
-Stays: 3 · plus a share of 1 combo stay(s)
+Stays: 4 · plus a share of 1 combo stay(s)
 
 | Line | Amount | Type |
 |---|---:|---|
-| Rental income (incl. channel fee recovery) | $9,738.00 | income |
-| Cleaning fees | $1,300.00 | income |
+| Rental income (incl. channel fee recovery) | $9,784.98 | income |
+| Cleaning fees | $1,309.00 | income |
 | Administrative fees | $148.32 | income |
-| Credit card processing recovered | $204.93 | income |
-| Taxes collected from guests | $1,036.55 | income |
-| **Total income** | **$12,427.80** | |
-| Platform host fees (Airbnb / Vrbo) | -$885.89 | expense |
-| FL sales tax + surtax remitted — accrued | -$466.98 | expense |
-| St. Johns County TDT remitted — accrued | -$569.56 | expense |
-| **Total expenses** | **-$1,922.43** | |
-| **Net** | **$10,505.37** | |
+| Credit card processing recovered | $206.61 | income |
+| Taxes collected from guests | $1,043.18 | income |
+| **Total income** | **$12,492.08** | |
+| Platform host fees (Airbnb / Vrbo) | -$917.26 | expense |
+| FL sales tax + surtax remitted — accrued | -$470.72 | expense |
+| St. Johns County TDT remitted — accrued | -$572.45 | expense |
+| **Total expenses** | **-$1,960.43** | |
+| **Net** | **$10,531.66** | |
 
 ### Vilano Bliss — 507 Twentieth St
 
@@ -161,27 +162,27 @@ Stays: 4 · plus a share of 1 combo stay(s)
 
 | | Amount |
 |---|---:|
-| Rental income (incl. channel fee recovery) | $62,089.00 |
-| Cleaning fees | $11,750.00 |
-| Pet fees | $600.00 |
+| Rental income (incl. channel fee recovery) | $63,495.21 |
+| Cleaning fees | $11,918.00 |
+| Pet fees | $603.00 |
 | Administrative fees | $644.81 |
-| Credit card processing recovered | $939.39 |
-| Taxes collected from guests | $5,903.21 |
-| **Total income** | **$81,926.41** |
-| Check: sum of OwnerRez `total_amount` | $81,926.41 |
-| Platform host fees | -$7,722.61 |
-| FL DR-15 remitted — accrued | -$2,167.57 |
-| St. Johns TDT remitted — accrued | -$3,801.16 |
-| **Net** | **$68,235.07** |
+| Credit card processing recovered | $986.61 |
+| Taxes collected from guests | $6,090.02 |
+| **Total income** | **$83,737.65** |
+| Check: sum of OwnerRez `total_amount` | $83,737.65 |
+| Platform host fees | -$7,844.14 |
+| FL DR-15 remitted — accrued | -$2,273.16 |
+| St. Johns TDT remitted — accrued | -$3,882.38 |
+| **Net** | **$69,737.97** |
 
 ### Tax tie-out
 
 | | Base | Rate | Tax |
 |---|---:|---:|---:|
-| DR-15 — host-remitted channels only | $33,347.20 | 6.5% | $2,167.57 |
-| St. Johns TDT — all channels | $76,023.20 | 5.0% | $3,801.16 |
-| **Tax accrued as expense** | | | **$5,968.73** |
-| Tax collected from guests (income) | | | $5,903.21 |
+| DR-15 — host-remitted channels only | $34,971.63 | 6.5% | $2,273.16 |
+| St. Johns TDT — all channels | $77,647.63 | 5.0% | $3,882.38 |
+| **Tax accrued as expense** | | | **$6,155.54** |
+| Tax collected from guests (income) | | | $6,090.02 |
 | **Collected minus remitted** | | | **-$65.52** |
 
 The accrued amounts are what the returns **should** show. When the returns are filed, confirm the filed figures match; if they differ, the filed figure wins and this report should be regenerated with a note. Collection allowances (up to $30 per return) are a portfolio-level credit — take them from the filed return, not from here.
@@ -196,15 +197,20 @@ The accrued amounts are what the returns **should** show. When the returns are f
 
 Split is by bedroom ratio. If the owner prefers a different split, change `COMBOS` in `scripts/stessa_report.py` and regenerate.
 
-## 4. Cancelled bookings with retained charges — NOT included above
+## 4. Cancelled bookings with retained charges
 
-A retained, unrefunded charge on a cancelled booking is generally taxable income where the guest had a guaranteed right to occupy. **Decide each one**, then enter any that are forfeitures as income under the property.
+**Confirmed as forfeitures by owner on 2026-09-09 — these ARE included as income in sections 1 and 2 above**, under the property shown. A forfeited charge is taxable: the guest held a guaranteed right to occupy.
 
-| Booking | Property | Channel | Retained | Decision |
-|---|---|---|---:|---|
-| 17492584 | Pink Flamingo | Vrbo | $89.17 | ☐ forfeiture · ☐ released |
-| 17393281 | The Palms | Vrbo | $64.29 | ☐ forfeiture · ☐ released |
-| 17213461 | Pink Flamingo | Vrbo | $1,657.78 | ☐ forfeiture · ☐ released |
+| Booking | Property | Channel | Retained | Taxable base | Tax |
+|---|---|---|---:|---:|---:|
+| 17213461 | Pink Flamingo | Vrbo | $1,657.78 | $1,486.80 | $170.98 |
+| 17492584 | Pink Flamingo | Vrbo | $89.17 | $79.97 | $9.20 |
+| 17393281 | The Palms | Vrbo | $64.29 | $57.66 | $6.63 |
+| **Total** | | | **$1,811.24** | **$1,624.43** | **$186.81** |
+
+> All three retained amounts on August-arrival cancellations confirmed as forfeitures. OwnerRez had already reduced each booking's charge lines to the retained amount, so the charges are used as-is.
+
+**Tax check:** these add $1,624.43 of taxable base to the period. If the filed returns did not include them, the period was under-reported by roughly $105.59 on the DR-15 and $81.22 on the county TDT. Confirm against the filed returns; correct by amendment or on the next return as your CPA advises.
 
 ## 5. Booking-level detail (audit trail)
 
@@ -228,9 +234,11 @@ A retained, unrefunded charge on a cancelled booking is generally taxable income
 | Pearl | 18984500 | 2026-08-31 | Airbnb | $719.25 | $685.00 | $34.25 | $106.18 |
 | Pink Flamingo | 18213638 | 2026-08-02 | Airbnb | $2,619.75 | $2,495.00 | $124.75 | $386.73 |
 | Pink Flamingo | 18210045 | 2026-08-07 | Airbnb | $1,680.00 | $1,600.00 | $80.00 | $248.00 |
+| Pink Flamingo | 17213461 | 2026-08-08 | Vrbo | $1,657.78 | $1,486.80 | $170.98 | $48.38 |
 | Pink Flamingo | 18857064 | 2026-08-18 | Airbnb | $1,628.55 | $1,551.00 | $77.55 | $240.41 |
 | Pink Flamingo | 17377445 | 2026-08-22 | Vrbo | $1,529.74 | $1,371.96 | $157.78 | $67.90 |
 | Pink Flamingo | 17962851 | 2026-08-28 | direct | $3,262.93 | $2,951.14 | $311.79 | $95.23 |
+| Pink Flamingo | 17492584 | 2026-08-29 | Vrbo | $89.17 | $79.97 | $9.20 | $41.78 |
 | Pink Palms Retreat | 18303820 | 2026-08-13 | Vrbo | $3,415.49 | $3,063.22 | $352.27 | $99.64 |
 | SeaBreeze | 16949967 | 2026-08-06 | My Website | $2,973.48 | $2,666.80 | $306.68 | $86.84 |
 | SeaBreeze | 16111745 | 2026-08-20 | Airbnb | $2,240.70 | $2,134.00 | $106.70 | $330.77 |
@@ -244,9 +252,10 @@ A retained, unrefunded charge on a cancelled booking is generally taxable income
 | The Palms | 16665946 | 2026-08-04 | Airbnb | $4,417.35 | $4,207.00 | $210.35 | $652.09 |
 | The Palms | 17190149 | 2026-08-16 | Vrbo | $3,381.04 | $3,032.32 | $348.72 | $98.66 |
 | The Palms | 18594274 | 2026-08-24 | direct | $2,921.66 | $2,620.32 | $301.34 | $85.32 |
+| The Palms | 17393281 | 2026-08-27 | Vrbo | $64.29 | $57.66 | $6.63 | $31.37 |
 | Vilano Bliss | 17345967 | 2026-08-01 | Airbnb | $5,045.25 | $4,805.00 | $240.25 | $744.78 |
 | Vilano Bliss | 16266448 | 2026-08-08 | Airbnb | $4,580.10 | $4,362.00 | $218.10 | $676.11 |
 | Vilano Bliss | 18681354 | 2026-08-18 | My Website | $1,263.90 | $1,133.54 | $130.36 | $36.95 |
 | Vilano Bliss | 17628659 | 2026-08-22 | Vrbo | $3,468.32 | $3,110.60 | $357.72 | $101.18 |
 
-38 active bookings · 11 cancelled · arrival month 2026-08.
+41 active bookings · 11 cancelled · arrival month 2026-08.
