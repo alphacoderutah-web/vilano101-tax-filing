@@ -362,11 +362,13 @@ def main():
         if note:
             w(f"> {note}")
             w("")
-        w(f"**Tax check:** these add {money(ftb)} of taxable base to the period. If the filed "
-          f"returns did not include them, the period was under-reported by roughly "
-          f"{money(ftb * state_rate)} on the DR-15 and {money(ftb * tdt_rate)} on the county "
-          f"TDT. Confirm against the filed returns; correct by amendment or on the next "
-          f"return as your CPA advises.")
+        if decisions.get("tax_paid_including_forfeitures"):
+            w(f"**Tax:** these add {money(ftb)} of taxable base. Owner confirmed the tax on "
+              f"them was filed and paid with the period's returns. No further action.")
+        else:
+            w(f"**Tax check:** these add {money(ftb)} of taxable base to the period. Confirm "
+              f"the filed returns included them — about {money(ftb * state_rate)} on the "
+              f"DR-15 and {money(ftb * tdt_rate)} on the county TDT.")
         w("")
     if undecided:
         w("**Undecided — NOT included as income.** Decide each, then add the booking id to "

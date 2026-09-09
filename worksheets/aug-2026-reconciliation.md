@@ -87,10 +87,10 @@ settings during the filing run** — raise a separate authorised audit afterward
 **Owner confirmed 2026-09-09 that all three retentions were forfeitures**, and therefore
 taxable. Recorded in `decisions.json`.
 
-> ⚠ **The figures in sections 2 and 3 below EXCLUDE these.** They were computed before the
-> determination. Corrected period totals:
+> **The figures in sections 2 and 3 below EXCLUDE these** — they were computed before the
+> determination. The period totals as filed:
 >
-> | | Excluding forfeitures | **Including forfeitures** |
+> | | Sections 2–3 below | **As filed** |
 > |---|---:|---:|
 > | TDT base (all channels) | $76,023.20 | **$77,647.63** |
 > | DR-15 base (host-remitted) | $33,347.20 | **$34,971.63** |
@@ -99,9 +99,8 @@ taxable. Recorded in `decisions.json`.
 >
 > All three are Vrbo bookings, so the business remits every tax on them.
 >
-> **If the filed August returns used the lower figures, the period was under-reported by
-> $105.59 (DR-15) and $81.22 (county TDT).** Confirm against the filed returns and correct
-> by amendment or on the next return, as your CPA advises.
+> **August returns filed, and the tax on these forfeitures was paid** (owner confirmed
+> 2026-09-09). Period closed. Use the "as filed" column.
 
 Retained, unrefunded charges on a cancelled booking are a taxable event where the
 guest had a guaranteed right to occupy.

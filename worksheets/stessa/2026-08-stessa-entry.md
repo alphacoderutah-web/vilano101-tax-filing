@@ -208,9 +208,9 @@ Split is by bedroom ratio. If the owner prefers a different split, change `COMBO
 | 17393281 | The Palms | Vrbo | $64.29 | $57.66 | $6.63 |
 | **Total** | | | **$1,811.24** | **$1,624.43** | **$186.81** |
 
-> All three retained amounts on August-arrival cancellations confirmed as forfeitures. OwnerRez had already reduced each booking's charge lines to the retained amount, so the charges are used as-is.
+> All three retained amounts on August-arrival cancellations confirmed as forfeitures. OwnerRez had already reduced each booking's charge lines to the retained amount, so the charges are used as-is. Owner confirmed the August returns were filed and the tax on these forfeitures was paid.
 
-**Tax check:** these add $1,624.43 of taxable base to the period. If the filed returns did not include them, the period was under-reported by roughly $105.59 on the DR-15 and $81.22 on the county TDT. Confirm against the filed returns; correct by amendment or on the next return as your CPA advises.
+**Tax:** these add $1,624.43 of taxable base. Owner confirmed the tax on them was filed and paid with the period's returns. No further action.
 
 ## 5. Booking-level detail (audit trail)
 

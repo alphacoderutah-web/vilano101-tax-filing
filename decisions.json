@@ -5,6 +5,8 @@
     "forfeitures": [17213461, 17492584, 17393281],
     "decided_by": "owner",
     "decided_on": "2026-09-09",
-    "note": "All three retained amounts on August-arrival cancellations confirmed as forfeitures. OwnerRez had already reduced each booking's charge lines to the retained amount, so the charges are used as-is."
+    "tax_paid_including_forfeitures": true,
+    "returns_filed": true,
+    "note": "All three retained amounts on August-arrival cancellations confirmed as forfeitures. OwnerRez had already reduced each booking's charge lines to the retained amount, so the charges are used as-is. Owner confirmed the August returns were filed and the tax on these forfeitures was paid."
   }
 }
